@@ -1,12 +1,14 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
+import { Metadata } from "next";
 
 import '../globals.css';
 
-export const metadata = {
+
+export const metadata: Metadata = {
     title: 'Threads',
-    description: 'A place to discuss things',
-};
+    description: 'A place to share your thoughts and ideas with others.',
+  }
 
 const inter = Inter({ subsets: ['latin'] });
 
