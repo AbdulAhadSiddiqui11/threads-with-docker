@@ -16,7 +16,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { userValidation } from '@/lib/validations/user';
 import * as z from "zod"
 import Image from "next/image";
-import { ChangeEvent, use, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Textarea } from "../ui/textarea";
 import { isBase64Image } from "@/lib/utils";
 import { useUploadThing } from "@/lib/uploadthing";
@@ -134,6 +134,7 @@ const AccountProfile = ({user, btnTitle} : AccountProfileProps) => {
                     <FormControl className="flex-1 text-base-semibold text-gray-200">
                         <Input type="file" accept="image/*" placeholder="Upload a photo" className="account-form_image-input" onChange={(e) => handleImage(e, field.onChange)}/>
                     </FormControl>
+                    <FormMessage />
                     </FormItem>
                 )}
                 />
@@ -148,6 +149,7 @@ const AccountProfile = ({user, btnTitle} : AccountProfileProps) => {
                     <FormControl>
                         <Input type='text' className="account-form_input nofocus" {...field} />
                     </FormControl>
+                    <FormMessage />
                     </FormItem>
                 )}
                 />
@@ -162,6 +164,7 @@ const AccountProfile = ({user, btnTitle} : AccountProfileProps) => {
                     <FormControl>
                         <Input type='text' className="account-form_input nofocus" {...field} />
                     </FormControl>
+                    <FormMessage />
                     </FormItem>
                 )}
                 />
@@ -176,6 +179,7 @@ const AccountProfile = ({user, btnTitle} : AccountProfileProps) => {
                     <FormControl>
                         <Textarea rows={10} className="account-form_input nofocus" {...field} />
                     </FormControl>
+                    <FormMessage />
                     </FormItem>
                 )}
                 />
