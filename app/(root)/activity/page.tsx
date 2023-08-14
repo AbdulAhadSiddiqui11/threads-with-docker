@@ -37,6 +37,12 @@ const ActivityPage = async () => {
                                         height={20}
                                         className="rounded-full object-cover"
                                     />
+                                    <p className="!text-small-regular text-light-1">
+                                        <span className="mr-1 text-primary-500">
+                                            {activity.author.name}
+                                        </span> {' '}
+                                        replies to your thread
+                                    </p>
                                 </article>
                             </Link>
                         ))}
