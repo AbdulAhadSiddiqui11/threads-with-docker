@@ -40,7 +40,7 @@ const ThreadDetailsPage = async ({ params }: { params: { id: string }}) => {
                 />
             </div>
 
-            <div className="mt-10 flex flex-col gap-3">
+            <div className="mt-10">
                 {thread.children.map((comment: any) => (
                     <ThreadCard 
                         key={comment._id} 
