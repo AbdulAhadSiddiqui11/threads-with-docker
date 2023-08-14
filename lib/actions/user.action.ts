@@ -1,12 +1,12 @@
 'use server';
 
 import User from "@/lib/models/user.model";
+import Community from "../models/community.model";
+import Thread from "../models/thread.model";
 
 import { connectToDatabase } from "../mongoose";
 import { revalidatePath } from "next/cache";
-import Thread from "../models/thread.model";
 import { FilterQuery, SortOrder } from "mongoose";
-import { skip } from "node:test";
 
 interface UserActionParams {
     userId: string;
@@ -47,12 +47,10 @@ export async function fetchUser(userId: string) {
     try {
         connectToDatabase();
 
-        return await User
-                        .findOne({ id: userId })
-                        // .populate({
-                        //     path: 'communities',
-                        //     model: 'Community',
-                        // });
+        return await User.findOne({ id: userId }).populate({
+            path: "communities",
+            model: Community,
+        });
 
     } catch (error: any) {
         throw new Error(`Error fetching user: ${error.message}`);
@@ -67,15 +65,22 @@ export async function fetchUserThreads(userId: string) {
                                     .populate({
                                         path: 'threads',
                                         model: Thread,
-                                        populate: {
-                                            path: 'children',
-                                            model: Thread,
-                                            populate: {
-                                                path: 'author',
-                                                model: User,
-                                                select: 'name image id',
-                                            }
-                                        }
+                                        populate: [
+                                            {
+                                                path: "community",
+                                                model: Community,
+                                                select: "name id image _id", // Select the "name" and "_id" fields from the "Community" model
+                                            },
+                                            {
+                                                path: "children",
+                                                model: Thread,
+                                                populate: {
+                                                    path: "author",
+                                                    model: User,
+                                                    select: "name image id", // Select the "name" and "_id" fields from the "User" model
+                                                },
+                                            },
+                                        ],
                                     });
         return threads;
     } catch (error: any) {
