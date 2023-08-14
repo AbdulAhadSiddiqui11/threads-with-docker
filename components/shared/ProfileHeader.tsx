@@ -7,10 +7,11 @@ interface ProfileHeaderProps {
     username: string;
     imgUrl: string;
     bio: string;
+    type?: 'User' | 'Community';
 }
 
 const ProfileHeader = (profileDetails: ProfileHeaderProps) => {
-    const { accountId, authUserId, name, username, imgUrl, bio } = profileDetails;
+    const { accountId, authUserId, name, username, imgUrl, bio, type} = profileDetails;
 
     return (
         <div className="flex w-full flex-col justify-start">

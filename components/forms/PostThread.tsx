@@ -23,8 +23,7 @@ import { useOrganization } from "@clerk/nextjs";
 function PostThread({ userId }: { userId: string }) {
     const router = useRouter();
     const pathname = usePathname();
-    const organization = useOrganization();
-    console.log(organization);
+    const { organization } = useOrganization();
 
     const form = useForm({
         resolver: zodResolver(threadValidation),
@@ -35,7 +34,7 @@ function PostThread({ userId }: { userId: string }) {
     });
 
     const onSubmit = async (values: z.infer<typeof threadValidation>) => {
-        await createThread({ text: values.thread, author: userId, communityId: organization.organization ? organization.organization.id : null, path: pathname });
+        await createThread({ text: values.thread, author: userId, communityId: organization ? organization.id : null, path: pathname });
 
         router.push('/');
     }
