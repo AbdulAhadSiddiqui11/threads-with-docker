@@ -19,18 +19,6 @@ import { usePathname, useRouter } from "next/navigation";
 import { threadValidation } from "@/lib/validations/thread";
 import { createThread } from "@/lib/actions/thread.action";
 
-interface AccountProfileProps {
-    user: {
-        id: string,
-        objectId: string,
-        username: string,
-        name: string,
-        bio: string,
-        image: string,
-    }
-    btnTitle: string
-}    
-
 function PostThread({ userId }: {userId : string}) {
     const router = useRouter();
     const pathname = usePathname();
