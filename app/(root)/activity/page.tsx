@@ -41,7 +41,7 @@ const ActivityPage = async () => {
                                         <span className="mr-1 text-primary-500">
                                             {activity.author.name}
                                         </span> {' '}
-                                        replies to your thread
+                                        replied to your thread
                                     </p>
                                 </article>
                             </Link>
