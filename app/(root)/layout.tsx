@@ -9,6 +9,8 @@ import RightSidebar from '@/components/shared/RightSidebar'
 import Bottombar from '@/components/shared/Bottombar'
 import { dark } from '@clerk/themes'
 
+import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -22,8 +24,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider appearance={{baseTheme: dark}}>
+    <ClerkProvider appearance={{ baseTheme: dark }}>
       <html lang="en">
+        <GoogleAnalytics GA_TRACKING_ID={process.env.GA_TRACKING_ID} />
         <body className={inter.className}>
           <Topbar />
           <main className='flex flex-row'>
